@@ -1,9 +1,11 @@
 
 #root
 {
-    width: 360px;
+    width: 380px;
     height: 540px;
-    background-color: black;
+    background-image: url('../public/nightsky.jpg');
+    background-size: cover;
+    
 }
 
 .container 
@@ -18,7 +20,9 @@
 .button-target
 {
     font-size: 2em;
-    width: 360px;
+    width: 380px;
     height:90px;
     border: black 1px solid;
+    color: white;
+    background: black;
 }

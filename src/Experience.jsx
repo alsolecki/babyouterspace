@@ -21,15 +21,23 @@ export default function Experience()
     // ANIMATION
 
     const groupRef = useRef()
+    const groupRefOuter = useRef()
 
     useFrame((state, delta) => 
     {
-        groupRef.current.rotation.y += Math.cos(delta) * 0.01
-        groupRef.current.rotation.x += Math.sin(delta) * 0.35
-        groupRef.current.rotation.z += Math.sin(delta) * 0.01
-        groupRef.current.position.x += delta * 0.1
-        groupRef.current.position.y += delta * 0.2
-        groupRef.current.position.z += delta * -0.3
+        groupRef.current.rotation.y += Math.cos(delta) * 0.0
+        groupRef.current.rotation.x += Math.sin(delta) * 0.0
+        groupRef.current.rotation.z += Math.sin(delta) * 0.75
+        // groupRef.current.position.x += delta * 0
+        // groupRef.current.position.y += delta * 0
+        // groupRef.current.position.z += delta * 0
+    })
+
+    useFrame((state, delta) => 
+    {
+        // groupRefOuter.current.position.x += Math.cos(delta) * 0.05
+        groupRefOuter.current.position.y += delta * 2
+        groupRefOuter.current.position.z += delta * -4
     })
 
     buttonA.addEventListener('click', ()=>
@@ -66,6 +74,9 @@ export default function Experience()
                 /> 
         </Float>
 
+      <group
+        ref={ groupRefOuter }  
+      >
         <group 
         ref={ groupRef }
         scale={ [ 3, 3, 3 ]}>
@@ -75,6 +86,6 @@ export default function Experience()
                 position-y={ -1 }
                 rotation-y={ Math.PI * 0} />
         </group>
-
+      </group>
     </>
 }
