@@ -27,7 +27,7 @@ export default function Experience()
     {
         groupRef.current.rotation.y += Math.cos(delta) * 0.0
         groupRef.current.rotation.x += Math.sin(delta) * 0.0
-        groupRef.current.rotation.z += Math.sin(delta) * 0.75
+        groupRef.current.rotation.z += Math.sin(delta) * 0.25
         // groupRef.current.position.x += delta * 0
         // groupRef.current.position.y += delta * 0
         // groupRef.current.position.z += delta * 0
@@ -36,8 +36,8 @@ export default function Experience()
     useFrame((state, delta) => 
     {
         // groupRefOuter.current.position.x += Math.cos(delta) * 0.05
-        groupRefOuter.current.position.y += delta * 2
-        groupRefOuter.current.position.z += delta * -4
+        groupRefOuter.current.position.y += delta * 0.75
+        groupRefOuter.current.position.z += delta * -1.5
     })
 
     buttonA.addEventListener('click', ()=>
@@ -83,6 +83,7 @@ export default function Experience()
            <Baby
                 onClick={ eventHandler }
                 scale={ 1.25 }
+                position-x={ 1 }
                 position-y={ -1 }
                 rotation-y={ Math.PI * 0} />
         </group>
