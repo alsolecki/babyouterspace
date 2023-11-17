@@ -3,8 +3,7 @@ import { useFrame } from '@react-three/fiber'
 import { useRef } from 'react'
 
 import Socket from './Socket.jsx'
-import Baby from './Baby.jsx'
-// import Duck from './Duck.jsx'
+import Duck from './Duck.jsx'
 
 export default function Experience() {
   const eventHandler = (e) => {
@@ -24,8 +23,8 @@ export default function Experience() {
 
   useFrame((state, delta) => {
     groupRef.current.rotation.y += Math.cos(delta) * 0.0
-    groupRef.current.rotation.x += Math.sin(delta) * 0.0
-    groupRef.current.rotation.z += Math.sin(delta) * 0.25
+    groupRef.current.rotation.x += Math.sin(delta) * 0.15
+    groupRef.current.rotation.z += Math.sin(delta) * 0.35
     // groupRef.current.position.x += delta * 0
     // groupRef.current.position.y += delta * 0
     // groupRef.current.position.z += delta * 0
@@ -33,7 +32,7 @@ export default function Experience() {
 
   useFrame((state, delta) => {
     // groupRefOuter.current.position.x += Math.cos(delta) * 0.05
-    groupRefOuter.current.position.y += delta * 0.75
+    groupRefOuter.current.position.y += delta * 0.25
     groupRefOuter.current.position.z += delta * -1.5
   })
 
@@ -71,29 +70,19 @@ export default function Experience() {
       />
     </Float>
 
-    {/* <Float speed={0.5} floatIntensity={0.5}>
-      <Duck
-        position-x={-3.5}
-        position-y={-3.5}
-        position-z={4}
-        scale={[1.25, 1.25, 1.25]}
-        rotation-y={Math.PI * -.35}
-        rotation-x={Math.PI * 1}
-        rotation-z={Math.PI * 0}
-      />
-    </Float> */}
-
     <group
       ref={groupRefOuter}
     >
       <group
         ref={groupRef}
-        scale={[3, 3, 3]}>
-        <Baby
+        scale={[1.5, 1.5, 1.5]}
+        position-x={-1}>
+        <Duck
           onClick={eventHandler}
-          scale={2.25}
+          scale={2.5}
           position-x={1}
           position-y={-1}
+          position-z={-10}
           rotation-y={Math.PI * 0} />
       </group>
     </group>
