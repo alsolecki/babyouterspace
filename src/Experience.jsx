@@ -4,89 +4,98 @@ import { useRef } from 'react'
 
 import Socket from './Socket.jsx'
 import Baby from './Baby.jsx'
+// import Duck from './Duck.jsx'
 
-export default function Experience()
-{
-    const eventHandler = (e) =>
-    {
-      e.object.material.color.set(`hsl(${Math.random() * 360}, 100%, 75%)`)
-    }
+export default function Experience() {
+  const eventHandler = (e) => {
+    e.object.material.color.set(`hsl(${Math.random() * 360}, 100%, 75%)`)
+  }
 
-    const buttonA = document.querySelector('.button-target')
+  const buttonA = document.querySelector('.button-target')
 
-    function refreshPage(){
-      window.location.reload();
-  } 
-    
-    // ANIMATION
+  function refreshPage() {
+    window.location.reload();
+  }
 
-    const groupRef = useRef()
-    const groupRefOuter = useRef()
+  // ANIMATION
 
-    useFrame((state, delta) => 
-    {
-        groupRef.current.rotation.y += Math.cos(delta) * 0.0
-        groupRef.current.rotation.x += Math.sin(delta) * 0.0
-        groupRef.current.rotation.z += Math.sin(delta) * 0.25
-        // groupRef.current.position.x += delta * 0
-        // groupRef.current.position.y += delta * 0
-        // groupRef.current.position.z += delta * 0
-    })
+  const groupRef = useRef()
+  const groupRefOuter = useRef()
 
-    useFrame((state, delta) => 
-    {
-        // groupRefOuter.current.position.x += Math.cos(delta) * 0.05
-        groupRefOuter.current.position.y += delta * 0.75
-        groupRefOuter.current.position.z += delta * -1.5
-    })
+  useFrame((state, delta) => {
+    groupRef.current.rotation.y += Math.cos(delta) * 0.0
+    groupRef.current.rotation.x += Math.sin(delta) * 0.0
+    groupRef.current.rotation.z += Math.sin(delta) * 0.25
+    // groupRef.current.position.x += delta * 0
+    // groupRef.current.position.y += delta * 0
+    // groupRef.current.position.z += delta * 0
+  })
 
-    buttonA.addEventListener('click', ()=>
-          { 
-            refreshPage()
-          })
+  useFrame((state, delta) => {
+    // groupRefOuter.current.position.x += Math.cos(delta) * 0.05
+    groupRefOuter.current.position.y += delta * 0.75
+    groupRefOuter.current.position.z += delta * -1.5
+  })
 
-    return <>
+  buttonA.addEventListener('click', () => {
+    refreshPage()
+  })
 
-        <OrbitControls makeDefault />
+  return <>
 
-        <directionalLight castShadow 
-                position={ [ -10, 2, 3 ] }
-                intensity={ 2.5 }
-                shadow-normalBias={ 0.04 }
-                color={ 'purple' }
-                />
-        <directionalLight castShadow 
-                position={ [ 10, 2, 3 ] }
-                intensity={ 1.5 }
-                shadow-normalBias={ 0.04 }
-                color={ 'yellow' }
-                />
-        <ambientLight intensity={ 0.5 } color={ 'red' }/>
-        <Float speed={ .5 } floatIntensity={ 0.5 }>
-            <Socket 
-                position-x={ -3.5 }
-                position-y={ -3.5 }
-                position-z={ 4 }
-                scale={ [ 1.25, 1.25, 1.25] }
-                rotation-y={ Math.PI * -.35 }    
-                rotation-x={ Math.PI * 1 }    
-                rotation-z={ Math.PI * 0}    
-                /> 
-        </Float>
+    <OrbitControls makeDefault />
 
+    <directionalLight castShadow
+      position={[-10, 2, 3]}
+      intensity={2.5}
+      shadow-normalBias={0.04}
+      color={'purple'}
+    />
+    <directionalLight castShadow
+      position={[10, 2, 3]}
+      intensity={1.5}
+      shadow-normalBias={0.04}
+      color={'yellow'}
+    />
+    <ambientLight intensity={0.5} color={'red'} />
+
+    <Float speed={.5} floatIntensity={0.5}>
+      <Socket
+        position-x={-3.5}
+        position-y={-3.5}
+        position-z={4}
+        scale={[1.25, 1.25, 1.25]}
+        rotation-y={Math.PI * -.35}
+        rotation-x={Math.PI * 1}
+        rotation-z={Math.PI * 0}
+      />
+    </Float>
+
+    {/* <Float speed={0.5} floatIntensity={0.5}>
+      <Duck
+        position-x={-3.5}
+        position-y={-3.5}
+        position-z={4}
+        scale={[1.25, 1.25, 1.25]}
+        rotation-y={Math.PI * -.35}
+        rotation-x={Math.PI * 1}
+        rotation-z={Math.PI * 0}
+      />
+    </Float> */}
+
+    <group
+      ref={groupRefOuter}
+    >
       <group
-        ref={ groupRefOuter }  
-      >
-        <group 
-        ref={ groupRef }
-        scale={ [ 3, 3, 3 ]}>
-           <Baby
-                onClick={ eventHandler }
-                scale={ 1.25 }
-                position-x={ 1 }
-                position-y={ -1 }
-                rotation-y={ Math.PI * 0} />
-        </group>
+        ref={groupRef}
+        scale={[3, 3, 3]}>
+        <Baby
+          onClick={eventHandler}
+          scale={2.25}
+          position-x={1}
+          position-y={-1}
+          rotation-y={Math.PI * 0} />
       </group>
-    </>
+    </group>
+  </>
 }
